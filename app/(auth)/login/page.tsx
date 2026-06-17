@@ -1,6 +1,7 @@
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
+import { SubmitButton } from "@/components/submit-button";
 
 async function login(formData: FormData) {
   "use server";
@@ -60,12 +61,12 @@ export default async function LoginPage({
             </p>
           )}
 
-          <button
-            type="submit"
-            className="mt-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 transition-colors"
+          <SubmitButton
+            pendingText="Signing in..."
+            className="mt-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 transition-colors disabled:opacity-60"
           >
             Sign in
-          </button>
+          </SubmitButton>
         </form>
         <p className="mt-6 text-center text-sm text-zinc-500">
           Don&apos;t have an account?{" "}

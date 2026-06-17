@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
+import { SubmitButton } from "@/components/submit-button";
 
 async function register(formData: FormData) {
   "use server";
@@ -85,12 +86,12 @@ export default async function RegisterPage({
             </p>
           )}
 
-          <button
-            type="submit"
-            className="mt-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 transition-colors"
+          <SubmitButton
+            pendingText="Creating account..."
+            className="mt-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 transition-colors disabled:opacity-60"
           >
             Register
-          </button>
+          </SubmitButton>
         </form>
         <p className="mt-6 text-center text-sm text-zinc-500">
           Already have an account?{" "}
