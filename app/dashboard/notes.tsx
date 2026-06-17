@@ -55,7 +55,10 @@ export function Notes() {
   const createMutation = useMutation({
     mutationFn: createNote,
     onSuccess: (newNote) => {
-      queryClient.setQueryData(["notes"], (old: Note[] = []) => [newNote, ...old]);
+      queryClient.setQueryData(["notes"], (old: Note[] = []) => [
+        newNote,
+        ...old,
+      ]);
       setNewContent("");
     },
   });
@@ -65,7 +68,7 @@ export function Notes() {
       updateNote(id, content),
     onSuccess: (updatedNote) => {
       queryClient.setQueryData(["notes"], (old: Note[] = []) =>
-        old.map((n) => (n.id === updatedNote.id ? updatedNote : n))
+        old.map((n) => (n.id === updatedNote.id ? updatedNote : n)),
       );
       setEditingId(null);
     },
@@ -75,7 +78,7 @@ export function Notes() {
     mutationFn: deleteNote,
     onMutate: (deletedId) => {
       queryClient.setQueryData(["notes"], (old: Note[] = []) =>
-        old.filter((n) => n.id !== deletedId)
+        old.filter((n) => n.id !== deletedId),
       );
     },
   });
@@ -125,7 +128,10 @@ export function Notes() {
 
       <ul className="flex flex-col gap-3">
         {notes.map((note) => (
-          <li key={note.id} className="bg-white rounded-xl border border-zinc-200 p-4">
+          <li
+            key={note.id}
+            className="bg-white rounded-xl border border-zinc-200 p-4"
+          >
             {editingId === note.id ? (
               <form
                 onSubmit={(e) => {
@@ -159,7 +165,9 @@ export function Notes() {
               </form>
             ) : (
               <>
-                <p className="text-sm text-zinc-800 whitespace-pre-wrap">{note.content}</p>
+                <p className="text-sm text-zinc-800 whitespace-pre-wrap">
+                  {note.content}
+                </p>
                 <div className="mt-3 flex items-center justify-between">
                   <p className="text-xs text-zinc-400">
                     {new Date(note.createdAt).toLocaleString()}
