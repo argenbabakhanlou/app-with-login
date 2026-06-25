@@ -37,9 +37,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# prisma
-prisma/migrations/
-
 # claude
 .claude/
 CLAUDE.md
